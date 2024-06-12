@@ -11,7 +11,7 @@ public class WeatherApiProperties {
     private String apiKey;
     private List<String> cities;
 
-
+    // Getters and Setters
     public String getApiKey() {
         return apiKey;
     }

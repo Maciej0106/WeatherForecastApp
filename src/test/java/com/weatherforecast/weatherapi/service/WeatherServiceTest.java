@@ -6,7 +6,6 @@ import com.weatherforecast.weatherapi.dto.CityWeatherForecastDto;
 import com.weatherforecast.weatherapi.dto.ForecastDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -25,12 +24,12 @@ public class WeatherServiceTest {
     @Mock
     private WeatherApiProperties properties;
 
-    @InjectMocks
     private WeatherService weatherService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        weatherService = new WeatherService(weatherClient, properties);
     }
 
     @Test
@@ -62,4 +61,3 @@ public class WeatherServiceTest {
         verify(weatherClient, times(1)).getWeatherForecast(anyString(), eq("Krakow"), anyInt());
     }
 }
-

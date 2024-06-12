@@ -5,7 +5,6 @@ import com.weatherforecast.weatherapi.dto.ForecastDto;
 import com.weatherforecast.weatherapi.service.WeatherService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
@@ -25,12 +24,12 @@ public class WeatherControllerTest {
     @Mock
     private WeatherService weatherService;
 
-    @InjectMocks
     private WeatherController weatherController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        weatherController = new WeatherController(weatherService);
         mockMvc = MockMvcBuilders.standaloneSetup(weatherController).build();
     }
 
@@ -53,4 +52,3 @@ public class WeatherControllerTest {
                 .andExpect(jsonPath("$[1].city").value("Krakow"));
     }
 }
-

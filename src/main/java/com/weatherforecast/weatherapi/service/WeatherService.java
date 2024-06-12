@@ -8,7 +8,6 @@ import com.weatherforecast.weatherapi.exception.ExternalServiceInvocationExcepti
 import com.weatherforecast.weatherapi.exception.InvalidApiKeyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ public class WeatherService {
     private final WeatherClient weatherClient;
     private final WeatherApiProperties properties;
 
-    @Autowired
     public WeatherService(WeatherClient weatherClient, WeatherApiProperties properties) {
         this.weatherClient = weatherClient;
         this.properties = properties;
@@ -33,23 +31,22 @@ public class WeatherService {
             try {
                 logger.info("Fetching weather forecast for city: {}", city);
                 CityWeatherForecastDto forecast = weatherClient.getWeatherForecast(properties.getApiKey(), city, 3);
-                forecast.setCity(city);
+                forecast.setCity(city); // Ustawienie pola city
                 forecasts.add(forecast);
             } catch (CityNotFoundException e) {
                 logger.error("City not found: {}", city, e);
-
+                // Optional: handle specific exception
             } catch (ExternalServiceInvocationException e) {
                 logger.error("Error invoking external service for city: {}", city, e);
-
+                // Optional: handle specific exception
             } catch (InvalidApiKeyException e) {
                 logger.error("Invalid API key provided", e);
-
+                // Optional: handle specific exception
             } catch (Exception e) {
                 logger.error("Error fetching weather forecast for city: {}", city, e);
-
+                // Optional: handle generic exception
             }
         }
         return forecasts;
     }
 }
-
