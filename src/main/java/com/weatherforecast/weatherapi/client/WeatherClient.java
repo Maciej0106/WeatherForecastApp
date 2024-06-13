@@ -12,4 +12,3 @@ public interface WeatherClient {
                                               @RequestParam("q") String city,
                                               @RequestParam("days") int days);
 }
-

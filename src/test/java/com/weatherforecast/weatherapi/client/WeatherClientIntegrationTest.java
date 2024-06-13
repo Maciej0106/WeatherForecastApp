@@ -42,7 +42,7 @@ public class WeatherClientIntegrationTest {
         CityWeatherForecastDto forecast = weatherClient.getWeatherForecast("test-api-key", "Warsaw", 3);
 
         assertThat(forecast.getCity()).isEqualTo("Warsaw");
-        assertThat(forecast.getForecast().getForecastDay()).hasSize(1);
-        assertThat(forecast.getForecast().getForecastDay().get(0).getDay().getMaxTempC()).isEqualTo(25.0);
+        assertThat(forecast.getForecast().getForecastday()).hasSize(1);
+        assertThat(forecast.getForecast().getForecastday().get(0).getDay().getMaxtemp_c()).isEqualTo(25.0);
     }
 }

@@ -36,7 +36,6 @@ public class FeignConfig {
         }
 
         private String extractCityFromRequest(String url) {
-
             String city = null;
             try {
                 city = java.net.URLDecoder.decode(url.split("q=")[1].split("&")[0], "UTF-8");
@@ -47,4 +46,3 @@ public class FeignConfig {
         }
     }
 }
-

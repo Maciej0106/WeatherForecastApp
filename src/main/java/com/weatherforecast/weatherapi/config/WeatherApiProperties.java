@@ -1,5 +1,7 @@
 package com.weatherforecast.weatherapi.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -7,24 +9,9 @@ import java.util.List;
 
 @Configuration
 @ConfigurationProperties(prefix = "weatherapi")
+@Getter
+@Setter
 public class WeatherApiProperties {
     private String apiKey;
     private List<String> cities;
-
-    // Getters and Setters
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
-    }
-
-    public List<String> getCities() {
-        return cities;
-    }
-
-    public void setCities(List<String> cities) {
-        this.cities = cities;
-    }
 }
